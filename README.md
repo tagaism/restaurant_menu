@@ -1,4 +1,15 @@
-# Restaurant Menu
+```
+   ______                                                      ______
+  (_____ \            _                                _      |  ___ \
+   _____) ) ____  ___| |_  ____ _   _  ____ ____ ____ | |_    | | _ | | ____ ____  _   _
+  (_____ ( / _  )/___)  _)/ _  | | | |/ ___) _  |  _ \|  _)   | || || |/ _  )  _ \| | | |
+        | ( (/ /|___ | |_( ( | | |_| | |  ( ( | | | | | |__   | || || ( (/ /| | | | |_| |
+        |_|\____|___/ \___)_||_|\____|_|   \_||_|_| |_|\___)  |_||_||_|\____)_| |_|\____|
+```
+### Requirenments
+  1. Use ES6 notations for functions and variables.
+  2. Use arrow style function.
+  3. Use higher-order functions for arrays and objects.
 ### How to create pull request (PR).
   1. Pull latest version of main:
       ```
