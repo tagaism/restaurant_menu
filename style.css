@@ -1,4 +1,21 @@
-body {
-    background-color: lightblue;
-  }
-  
+:root {
+    --main-color: #F1F5F9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-color);
+}
+
+.search-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-item {
+    list-style: none;
+}
+ol {
+  list-style: square inside url("sqpurple.gif");
+}
