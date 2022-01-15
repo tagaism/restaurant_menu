@@ -27,4 +27,4 @@
   4. Assign all members to code-review.
   5. Create PR to 'main' branch.
   6. Inform team in slack.
-  7. Wait for feedback.
+  7. DO NOT MERGE! Wait for feedback.
