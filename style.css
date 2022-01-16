@@ -1,116 +1,176 @@
 :root {
     --main-color: #F1F5F9;
     --border-color: orange;
+    --description-color: grey;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-/* 
-
-.search-list {
-    display: flex;
-    flex-direction: row;
+* {
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-color);
 }
-
-.search-item {
-    list-style: none;
-} */
 
 /* mobile screen */
+.flex-with-direction {
+    display: flex;
+    flex-direction: column;
+}
 
+main {
+    align-items: center;
+}
 
+header {
+    align-items: center;
+}
 
+hr {
+    width: 80px;
+    border-top: 2px solid var(--border-color);
+    margin-top: 10px;
+}
 
-@media (max-width: 600px) {
+.container {
+    align-items: center;
+    margin-top: 30px;
+}
 
-    * {
-        margin: 0;
-        padding: 0;
-        background-color: var(--main-color);
+.search {
+    width: 100%;
+}
 
-    }
+ul {
+    align-items: center;
+}
 
-    .dish-price {
-        color: #16A7FA;
-        text-align: end;
+li {
+    list-style-type: none;
+    border: solid 3px var(--border-color);
+    border-radius: 5px;
+    border-style: outset;
+    width: 80%;
+    padding: 5px 0;
+    margin: 5px;
+    text-align: center;
+}
 
-    }
+li:hover{
+    border-style: inset;
+}
 
-    hr {
-        border-top: 2px solid var(--border-color);
-    }
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--border-color);
+    width: 100%;
+}
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        /* justify-content: center; */
-        align-items: center;
+.card {
+    align-items: center;
+    border-bottom: solid var(--border-color);
+    width: 80%;
+    margin: 5px 0;
+}
 
+.img {
+    max-width: 600px;
+}
+
+img {
+    width: 100%;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+}
+
+.name-and-price {
+    position: relative;
+    flex-direction: row;
+    top: -50px
+}
+
+.dish-name {
+    background-color: white;
+    opacity: 0.8;
+    width: 80%;
+    text-align: center;
+    /* position: relative; */
+    bottom: 40px;
+}
+
+.dish-price {
+    color: var(--border-color);
+    text-align: end;
+    bottom: 15px;
+    font-size: 30px;
+}
+
+.dish-info {
+    padding: 0 15px 15px 15px;
+    position: relative;
+    bottom: 10px;
+}
+
+@media (min-width: 600px) {
+    .main {
+        max-width: 1000px;
+        flex-direction: row;
+        flex-flow: row wrap;
+        justify-content: center;
     }
 
     .search {
-        width: 100%;
+        width: 60%;
+        margin: 20px;
     }
 
     .search ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-
-    }
-
-    li {
-        list-style-type: none;
-        border: solid 2px var(--border-color);
-        border-radius: 5px;
-        width: 80%;
-        padding: 5px;
-        margin: 5px;
-        text-align: center;
-
-    }
-
-    a {
-        text-decoration: none;
-        color: var(--border-color);
-
-    }
-
-    img {
-        width: 200px;
-        border: 2px solid var(--border-color);
-        border-radius: 5px;
-
-
-
+        flex-direction: row;
     }
 
     .card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border: solid var(--border-color);
-        width: 90%;
-        margin: 5px 0;
-
-
+        margin-right: 30px;
+        width: 40%;
+        flex-direction: row;
+        float: left;
+        flex-grow: 4;
+        border: none;
+        align-items: flex-start;
     }
 
-    main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-
-
+    .img {
+        max-width: 200px;
     }
 
-    .price-hr {
-        border-top: 2px dashed var(--border-color);
-
+    .name-and-price {
+        font-size: 20px;
+        flex-direction: row;
+        top: 0;
+        border-bottom: 2px dashed var(--description-color);
     }
 
     .dish-name {
-        text-align: center;
+        text-align: left;
+        margin-left: 20px;
+        background-color: var(--main-color);
+        font-size: 15px;
     }
 
+    .dish-price {
+        bottom: 0;
+        margin-right: 10px;
+        font-size: smaller;
+    }
+
+    .dish-info {
+        bottom: 0;
+        font-size: small;
+        margin-top: 20px;
+        color: var(--description-color);
+    }
+
+    .description {
+        margin-left: 10px;
+        max-width: 260px;
+    }
 }
