@@ -1,14 +1,16 @@
-import { data, getData } from "./helpers.js";
+import {
+    data,
+    getData
+} from "./helpers.js";
 
 const data = getData;
 
-const dishImage = document.querySelector("img")
-const dishName = document.querySelector(".dish-name")
-const dishPrice = document.querySelector(".dish-price")
-const dishInfo = document.querySelector(".dish-info")
-const mainMenu = document.querySelector("main")
+const dishImage = document.querySelector("img");
+const dishName = document.querySelector(".dish-name");
+const dishPrice = document.querySelector(".dish-price");
+const dishInfo = document.querySelector(".dish-info");
+const mainMenu = document.querySelector("main");
 
-console.log(data)
 
 // method for rendering dishes into main menu
 const renderDataToMenu = (data) => {
@@ -42,7 +44,6 @@ const renderDataToMenu = (data) => {
                 </div>
             `
     })
-
 }
 
-renderDataToMenu(data)
+renderDataToMenu(data);
