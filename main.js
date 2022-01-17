@@ -1,51 +1,9 @@
-// import {
-//     data,
-//     getData
-// } from "./helpers.js";
+import {
+    data,
+    getData
+} from "./helpers.js";
 
-// const data = getData;
-
-const data = [{
-        "id": 1,
-        "title": "buttermilk pancakes",
-        "category": "breakfast",
-        "price": 15.99,
-        "img": "https://i.etsystatic.com/24305988/r/il/274a22/2462601398/il_794xN.2462601398_lsge.jpg",
-        "desc": "`I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed `"
-    },
-    {
-        "id": 2,
-        "title": "diner double",
-        "category": "lunch",
-        "price": 13.99,
-        "img": "https://i.etsystatic.com/24305988/r/il/274a22/2462601398/il_794xN.2462601398_lsge.jpg",
-        "desc": "`vaporware iPhone mumblecore selvage raw denim slow-carb leggings gochujang helvetica man braid jianbing. Marfa thundercats `"
-    },
-    {
-        "id": 3,
-        "title": "godzilla milkshake",
-        "category": "shakes",
-        "price": 6.99,
-        "img": "https://www.sugarandsoul.co/wp-content/uploads/2021/04/chocolate-milkshake-8.jpg",
-        "desc": "`ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`"
-    },
-    {
-        "id": 4,
-        "title": "country delight",
-        "category": "breakfast",
-        "price": 20.99,
-        "img": "https://i.etsystatic.com/24305988/r/il/274a22/2462601398/il_794xN.2462601398_lsge.jpg",
-        "desc": "`Shabby chic keffiyeh neutra snackwave pork belly shoreditch. Prism austin mlkshk truffaut, `"
-    },
-    {
-        "id": 8,
-        "title": "vanilla milkshake",
-        "category": "shakes",
-        "price": 6.99,
-        "img": "https://goodiegodmother.com/wp-content/uploads/2019/08/creamy-cookies-and-cream-milkshake-1.jpg",
-        "desc": "`ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`"
-    },
-]
+const data = getData;
 
 const dishImage = document.querySelector("img");
 const dishName = document.querySelector(".dish-name");
