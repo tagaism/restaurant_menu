@@ -6,6 +6,8 @@
         | ( (/ /|___ | |_( ( | | |_| | |  ( ( | | | | | |__   | || || ( (/ /| | | | |_| |
         |_|\____|___/ \___)_||_|\____|_|   \_||_|_| |_|\___)  |_||_||_|\____)_| |_|\____|
 ```
+### About project
+https://docs.google.com/document/d/1kPrMslDqqElkycpKjZUNeSeEZX2Jeq0IulVVs44N2R8/edit?pli=1#
 ### Requirenments
   1. Use ES6 notations for functions and variables.
   2. Use arrow style function.
