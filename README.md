@@ -30,3 +30,12 @@ https://docs.google.com/document/d/1kPrMslDqqElkycpKjZUNeSeEZX2Jeq0IulVVs44N2R8/
   5. Create PR to 'main' branch.
   6. Inform team in slack.
   7. DO NOT MERGE! Wait for feedback.
+  8. If your PR is returned, do not create new branch or new PR.
+      Do all fixings on current branch. Then,
+      ```
+      $ git add .
+      $ git commit -m "Made fixings"
+      $ git push
+      ```
+  9. GOTO -> step 6.
+      
