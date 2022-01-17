@@ -7,6 +7,3 @@ export const getData = async () => {
     return data;
 }
 
-// export const getData = fetch(API_URL)
-//     .then(response => response.json())
-//     .then(data => data)
