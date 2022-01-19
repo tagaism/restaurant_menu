@@ -43,10 +43,10 @@ const getData = fetch(API_URL)
                         </div>
                     </div>
                 `
-            })
+            });
         }
 
-        renderDataToMenu(data)
+        renderDataToMenu(data);
 
         /**
          * searchInfo function will get triggered once user clicks search button
@@ -61,22 +61,20 @@ const getData = fetch(API_URL)
             let searchedWord = searchInput.value;
 
             let searchedItems = [];
-            data.forEach(dish => {
-                if (dish.title.includes(searchedWord) ||
-                    dish.desc.includes(searchedWord)) {
-                    searchedItems.push(dish)
-                }
-            })
+            searchedItems = data.filter(dish =>
+                dish.title.includes(searchedWord) ||
+                dish.desc.includes(searchedWord)
+            );
 
             // cleaning the main menu before rendering search results
             mainMenu.innerHTML = "";
-            console.log(searchedItems)
-            renderDataToMenu(searchedItems)
+
+            renderDataToMenu(searchedItems);
         }
 
         /**
          * Event listener is added for search functionality
          * as soon as user click Search button it will call searchInfo function
          */
-        searchButton.addEventListener("click", searchInfo)
-    })
+        searchInput.addEventListener("input", searchInfo);
+    });

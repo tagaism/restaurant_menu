@@ -38,12 +38,10 @@ hr {
     justify-content: center;
     flex-direction: row;
     justify-content: space-around;
-    /* vertical-align: middle; */
     align-items: center;
 }
 
-.search-input,
-.search-button {
+.search-input {
     box-sizing: border-box;
     font-size: 20px;
     padding: 5px;
