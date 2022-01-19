@@ -3,7 +3,7 @@
     --border-color: salmon;
     --description-color: grey;
     --button-hover: bisque;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 * {
@@ -42,7 +42,8 @@ hr {
     align-items: center;
 }
 
-.search-input, .search-button {
+.search-input,
+.search-button {
     box-sizing: border-box;
     font-size: 20px;
     padding: 5px;
@@ -51,7 +52,7 @@ hr {
     margin: 20px 10px;
     border: solid 3px var(--border-color);
     vertical-align: middle;
-    
+
 }
 
 .search-button {
@@ -92,7 +93,7 @@ li {
     text-align: center;
 }
 
-li:hover{
+li:hover {
     border-style: inset;
     background-color: var(--button-hover);
 }
