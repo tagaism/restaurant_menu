@@ -77,4 +77,3 @@ const getData = fetch(API_URL)
         searchInput.addEventListener("input", searchInfo);
 
     });
-    
