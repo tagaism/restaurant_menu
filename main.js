@@ -6,6 +6,9 @@ const dishPrice = document.querySelector(".dish-price");
 const dishInfo = document.querySelector(".dish-info");
 const mainMenu = document.querySelector("main");
 const searchInput = document.querySelector(".search-input");
+const addToCartDiv = document.querySelector(".add-to-cart");
+const addToCartButton = document.querySelector(".add-to-cart-button");
+const list = document.querySelector(".search-list");
 
 const getData = fetch(API_URL)
     .then(resp => resp.json())
@@ -17,7 +20,7 @@ const getData = fetch(API_URL)
          */
         const renderDataToMenu = (data) => {
             data.forEach(dish => {
-                // creating a div element for each dish into main container
+                // // creating a div element for each dish into main container
                 let cardDiv = document.createElement("div");
                 // appending each div to main container
                 mainMenu.appendChild(cardDiv);
@@ -37,7 +40,7 @@ const getData = fetch(API_URL)
                             <p>${dish.desc}</p>
                         </div>
                         <div class="add-to-cart">
-                            <button class="add-to-button">ADD TO CART</button>
+                            <button class="add-to-cart-button">ADD TO CART</button>
                         </div>
                     </div>
                 `
@@ -70,10 +73,47 @@ const getData = fetch(API_URL)
             renderDataToMenu(searchedItems);
         }
 
-        /**
-         * Event listener is added for search functionality
-         * as soon as user click Search button it will call searchInfo function
-         */
         searchInput.addEventListener("input", searchInfo);
+
+        /**
+         * showCategoryMenu() function takes category as parameter and filters data 
+         * for clicked category and updates the main menu to show related items 
+         * for that category only
+         */
+        function showCategoryMenu(category) {
+
+            let categoryItems = data.filter(item => item.category === category)
+            mainMenu.innerHTML = "";
+
+            renderDataToMenu(categoryItems);
+        }
+
+
+        list.addEventListener("click", (e) => {
+
+            // capturing the id of event target
+            let categoryClicked = e.target.id;
+
+            // clicked category
+            let category;
+            switch (categoryClicked) {
+                case "breakfast":
+                    category = "breakfast";
+                    break;
+                case "lunch":
+                    category = "lunch";
+                    break;
+                case "shakes":
+                    category = "shakes";
+                    break;
+                case "dinner":
+                    category = "dinner";
+                    break;
+                default:
+                    location.reload(); // reloads the page
+                    break;
+            }
+            showCategoryMenu(category);
+        })
 
     });
