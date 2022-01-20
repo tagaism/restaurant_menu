@@ -6,6 +6,10 @@ const dishPrice = document.querySelector(".dish-price");
 const dishInfo = document.querySelector(".dish-info");
 const mainMenu = document.querySelector("main");
 const searchInput = document.querySelector(".search-input");
+const breakfast = document.querySelector("#breakfast");
+const lunch = document.querySelector("#lunch");
+const shakes = document.querySelector("#shakes");
+const dinner = document.querySelector("#dinner");
 
 const getData = fetch(API_URL)
     .then(resp => resp.json())
@@ -47,6 +51,14 @@ const getData = fetch(API_URL)
         renderDataToMenu(data);
 
         /**
+         * function clearMainMenu() clears the main page dishes
+         */
+        function clearMainMenu(){
+
+            mainMenu.innerHTML = "";
+        }
+
+        /**
          * searchInfo function will get triggered once user clicks search button
          * users input will be read and function will seach thru the data
          * if word matches the title or the description of the dish then
@@ -65,7 +77,7 @@ const getData = fetch(API_URL)
             );
 
             // cleaning the main menu before rendering search results
-            mainMenu.innerHTML = "";
+            clearMainMenu();
 
             renderDataToMenu(searchedItems);
         }
@@ -76,4 +88,59 @@ const getData = fetch(API_URL)
          */
         searchInput.addEventListener("input", searchInfo);
 
+        /**
+         * showBreakfast() function filters through data [objects]
+         * and checks if the object category is breakfast
+         */
+        function showBreakfast() {
+            // filtering object categories where it is breakfast
+            let breakfastItems = data.filter(item => item.category === 'breakfast')
+
+            clearMainMenu();
+
+            renderDataToMenu(breakfastItems);
+        }
+        breakfast.addEventListener("click", showBreakfast());
+
+        /**
+         * showLunch() function filters through data [objects]
+         * and checks if the object category is lunch
+         */
+         function showLunch() {
+            // filtering object categories where it is lunch
+            let lunchItems = data.filter(item => item.category === 'lunch')
+
+            clearMainMenu();
+
+            renderDataToMenu(lunchItems);
+        }
+        lunch.addEventListener("click", showLunch());
+
+        /**
+         * showShakes() function filters through data [objects]
+         * and checks if the object category is shakes
+         */
+         function showShakes() {
+            // filtering object categories where it is shakes
+            let shakeItems = data.filter(item => item.category === 'shakes')
+
+            clearMainMenu();
+
+            renderDataToMenu(shakeItems);
+        }
+        shakes.addEventListener("click", showShakes());
+
+        /**
+         * showDinner() function filters through data [objects]
+         * and checks if the object category is dinner
+         */
+         function showDinner() {
+            // filtering object categories where it is dinner
+            let dinnerItems = data.filter(item => item.category === 'dinner')
+
+            clearMainMenu();
+
+            renderDataToMenu(dinnerItems);
+        }
+        dinner.addEventListener("click", showDinner());
     });
