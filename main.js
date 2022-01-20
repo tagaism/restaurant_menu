@@ -6,8 +6,6 @@ const dishPrice = document.querySelector(".dish-price");
 const dishInfo = document.querySelector(".dish-info");
 const mainMenu = document.querySelector("main");
 const searchInput = document.querySelector(".search-input");
-const searchButton = document.querySelector(".search-button");
-
 
 const getData = fetch(API_URL)
     .then(resp => resp.json())
@@ -77,4 +75,6 @@ const getData = fetch(API_URL)
          * as soon as user click Search button it will call searchInfo function
          */
         searchInput.addEventListener("input", searchInfo);
+
     });
+    
