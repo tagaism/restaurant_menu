@@ -1,9 +1,6 @@
 const API_URL = "https://gist.githubusercontent.com/maratgaip/44060c688fcf5f2b7b3985a6d15fdb1d/raw/e93c3dce0826d08c8c6e779cb5e6d9512c8fdced/restaurant-menu.json";
+import { getImages } from "./images_data.js";
 
-const dishImage = document.querySelector("img");
-const dishName = document.querySelector(".dish-name");
-const dishPrice = document.querySelector(".dish-price");
-const dishInfo = document.querySelector(".dish-info");
 const mainMenu = document.querySelector("main");
 const searchInput = document.querySelector(".search-input");
 const addToCartDiv = document.querySelector(".add-to-cart");
@@ -17,24 +14,26 @@ const list = document.querySelector(".search-list");
  */
 const renderDataToMenu = (data) => {
     data.forEach(dish => {
-        // // creating a div element for each dish into main container
+        //  creating a div element for each dish into main container
         let cardDiv = document.createElement("div");
         // appending each div to main container
         mainMenu.appendChild(cardDiv);
         // adding the class name for div
         cardDiv.className = "card flex-with-direction";
         // rendering the data into each div
+        // rendering the data into each div
+        const dishImg = getImages().find(obj => obj[dish.title])[dish.title];
         cardDiv.innerHTML = `
             <div class="img">
-                <img src="${dish.img}" alt="${dish.title}">
+                <img src="${dishImg}" alt="${dish.title}">
             </div>
             <div class="description">
                 <div class="name-and-price flex-with-direction white-opacity">
                     <h3 class="dish-name">${dish.title}</h3>
-                    <h3 class="dish-price">${dish.price}</h3>
+                    <h3 class="dish-price">$${dish.price}</h3>
                 </div>
                 <div class="dish-info">
-                    <p>${dish.desc}</p>
+                    <p>${dish.desc.replace(/`/g, "")}</p>
                 </div>
                 <div class="add-to-cart">
                     <button class="add-to-cart-button">ADD TO CART</button>
@@ -67,10 +66,9 @@ const searchInfo = () => {
     fetch(API_URL)
         .then(resp => resp.json())
         .then(data => {
-            let searchedWord = searchInput.value;
+            let searchedWord = searchInput.value.toLowerCase();
 
-            let searchedItems = [];
-            searchedItems = data.filter(dish =>
+            let searchedItems = data.filter(dish =>
                 dish.title.includes(searchedWord) ||
                 dish.desc.includes(searchedWord)
             );
