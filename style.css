@@ -1,8 +1,9 @@
 :root {
     --main-color: #F1F5F9;
-    --border-color: orange;
+    --border-color: salmon;
     --description-color: grey;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    --button-hover: bisque;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 * {
@@ -31,6 +32,41 @@ hr {
     margin-top: 10px;
 }
 
+.search-area {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search-input {
+    box-sizing: border-box;
+    font-size: 20px;
+    padding: 5px;
+    height: 40px;
+    border-radius: 5px;
+    margin: 20px 10px;
+    border: solid 3px var(--border-color);
+    vertical-align: middle;
+
+}
+
+.search-button {
+    padding: 5px 15px;
+}
+
+.search-button:hover {
+    background-color: var(--button-hover);
+    border-style: inset;
+}
+
+.search-input:focus {
+    transform: none;
+    outline: 0;
+}
+
 .container {
     align-items: center;
     margin-top: 30px;
@@ -55,8 +91,9 @@ li {
     text-align: center;
 }
 
-li:hover{
+li:hover {
     border-style: inset;
+    background-color: var(--button-hover);
 }
 
 a {
@@ -109,6 +146,22 @@ img {
     padding: 0 15px 15px 15px;
     position: relative;
     bottom: 10px;
+}
+
+.add-to-cart {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-to-button {
+    padding: 5px;
+    border: solid 2px var(--border-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.add-to-button:hover {
+    background-color: var(--button-hover);
 }
 
 @media (min-width: 600px) {
