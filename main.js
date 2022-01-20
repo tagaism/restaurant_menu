@@ -6,7 +6,6 @@ const dishPrice = document.querySelector(".dish-price");
 const dishInfo = document.querySelector(".dish-info");
 const mainMenu = document.querySelector("main");
 const searchInput = document.querySelector(".search-input");
-const searchByFeature = document.querySelector(".search");
 
 const getData = fetch(API_URL)
     .then(resp => resp.json())
@@ -26,8 +25,8 @@ const getData = fetch(API_URL)
                 cardDiv.className = "card flex-with-direction";
                 // rendering the data into each div
                 cardDiv.innerHTML = `
-                <div class="img">
-                <img src="${dish.img}" alt="${dish.title}">
+                    <div class="img">
+                        <img src="${dish.img}" alt="${dish.title}">
                     </div>
                     <div class="description">
                         <div class="name-and-price flex-with-direction white-opacity">
@@ -76,29 +75,5 @@ const getData = fetch(API_URL)
          * as soon as user click Search button it will call searchInfo function
          */
         searchInput.addEventListener("input", searchInfo);
-        
-        //Search by Feature - Nigina
-        function searchByMeal(event) {
-            let item = event.target;
-            let x= item.innerText
-            console.log(x.toLocaleLowerCase())
-
-            let searchedWord = x.toLocaleLowerCase();
-
-            let searchedItems = [];
-            searchedItems = data.filter(dish =>
-                dish.category.includes(searchedWord)
-            );
-
-            // cleaning the main menu before rendering search results
-            mainMenu.innerHTML = "";
-
-            renderDataToMenu(searchedItems);
-        
-        }
-        searchByFeature.addEventListener("click", searchByMeal);
-
 
     });
-
-
