@@ -13,6 +13,9 @@ const list = document.querySelector(".search-list");
  * as a parameter it takes array of objects as data
  */
 const renderDataToMenu = (data) => {
+    // cleaning the main menu before rendering search results
+    mainMenu.innerHTML = "";
+
     data.forEach(dish => {
         //  creating a div element for each dish into main container
         let cardDiv = document.createElement("div");
@@ -20,7 +23,6 @@ const renderDataToMenu = (data) => {
         mainMenu.appendChild(cardDiv);
         // adding the class name for div
         cardDiv.className = "card flex-with-direction";
-        // rendering the data into each div
         // rendering the data into each div
         const dishImg = getImages().find(obj => obj[dish.title])[dish.title];
         cardDiv.innerHTML = `
@@ -46,16 +48,16 @@ const renderDataToMenu = (data) => {
 /*
  * Here we use IIFE function on initial page load
 */
-(
-    () => {
-        fetch(API_URL)
-            .then(resp => resp.json())
-            .then(data => renderDataToMenu(data));
+(() => {
+    fetch(API_URL)
+        .then(resp => resp.json())
+        .then(data => renderDataToMenu(data));
     }
 )();
 
 /**
- * searchInfo function will get triggered once user clicks search button
+ * searchInfo function will get triggered once user starts to input dish
+ * name or descriptions to search field.
  * users input will be read and function will seach thru the data
  * if word matches the title or the description of the dish then
  * it will return the item to and searchedItems. By using this temp
@@ -73,15 +75,10 @@ const searchInfo = () => {
                 dish.desc.includes(searchedWord)
             );
 
-            // cleaning the main menu before rendering search results
-            mainMenu.innerHTML = "";
-
             renderDataToMenu(searchedItems);
         });
 }
-
 searchInput.addEventListener("input", searchInfo);
-
 
 /**
  * showCategoryMenu() function takes category as parameter and filters data 
@@ -92,35 +89,9 @@ function showCategoryMenu(category) {
     fetch(API_URL)
         .then(resp => resp.json())
         .then(data => {
-            let categoryItems = data.filter(item => item.category === category)
-            mainMenu.innerHTML = "";
+            let categoryItems = category === "all" ? data : data.filter(item => item.category === category);
 
             renderDataToMenu(categoryItems);
         })
 }
-
-list.addEventListener("click", (e) => {
-    // capturing the id of event target
-    let categoryClicked = e.target.id;
-
-    // clicked category
-    let category;
-    switch (categoryClicked) {
-        case "breakfast":
-            category = "breakfast";
-            break;
-        case "lunch":
-            category = "lunch";
-            break;
-        case "shakes":
-            category = "shakes";
-            break;
-        case "dinner":
-            category = "dinner";
-            break;
-        default:
-            location.reload(); // reloads the page
-            break;
-    }
-    showCategoryMenu(category);
-})
+list.addEventListener("click", (e) => showCategoryMenu(e.target.id))
