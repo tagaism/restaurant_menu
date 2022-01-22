@@ -8,7 +8,7 @@ export const getImages = () => {
         {"oreo dream" : "https://thumbs.dreamstime.com/b/creamy-no-bake-cheesecake-chocolate-cookies-oreo-biscuit-cake-144076795.jpg"},
         {"bacon overflow" : "https://c8.alamy.com/comp/2C60NFC/hamon-on-the-stand-wedding-buffet-2C60NFC.jpg"},
         {"american classic" : "https://cdn.theculturetrip.com/wp-content/uploads/2017/05/nathans.jpg"},
-        {"quarantine buddy" : "https://www.thetaste.ie/wp-content/uploads/2016/05/Kushi_Bento.0.0.0.0-720x340.jpg"},
+        {"quarantine buddy" : "https://thumbs.dreamstime.com/b/take-away-japanese-food-bento-box-menu-set-chicken-fried-dumplings-edamame-rice-vegetables-plastic-box-package-168146786.jpg"},
         {"steak dinner" : "https://thumbs.dreamstime.com/b/sirloin-steak-dinner-7979703.jpg"},
     ]
 }
