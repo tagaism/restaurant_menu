@@ -1,11 +1,16 @@
 const API_URL = "https://gist.githubusercontent.com/maratgaip/44060c688fcf5f2b7b3985a6d15fdb1d/raw/e93c3dce0826d08c8c6e779cb5e6d9512c8fdced/restaurant-menu.json";
-import { getImages } from "./images_data.js";
+import {
+    getImages
+} from "./images_data.js";
 
 const mainMenu = document.querySelector("main");
 const searchInput = document.querySelector(".search-input");
-const addToCartDiv = document.querySelector(".add-to-cart");
-const addToCartButton = document.querySelector(".add-to-cart-button");
 const list = document.querySelector(".search-list");
+const cartArea = document.querySelector(".cart-area");
+const dishNameInCart = document.querySelector(".name-in-cart");
+const dishQuantityInCart = document.querySelector(".quantity-in-cart");
+const dishPriceInCart = document.querySelector(".price-in-cart");
+const showCartButton = document.querySelector(".checkout-button");
 
 /**
  * renderDataToMenu() function
@@ -13,36 +18,36 @@ const list = document.querySelector(".search-list");
  * as a parameter it takes array of objects as data
  */
 const renderDataToMenu = (data) => {
-    // cleaning the main menu before rendering search results
-    mainMenu.innerHTML = "";
+        // cleaning the main menu before rendering search results
+        mainMenu.innerHTML = "";
 
-    data.forEach(dish => {
-        //  creating a div element for each dish into main container
-        let cardDiv = document.createElement("div");
-        // appending each div to main container
-        mainMenu.appendChild(cardDiv);
-        // adding the class name for div
-        cardDiv.className = "card flex-with-direction";
-        // rendering the data into each div
-        const dishImg = getImages().find(obj => obj[dish.title])[dish.title];
-        cardDiv.innerHTML = `
-            <div class="img">
-                <img src="${dishImg}" alt="${dish.title}">
-            </div>
-            <div class="description">
-                <div class="name-and-price flex-with-direction white-opacity">
-                    <h3 class="dish-name">${dish.title}</h3>
-                    <h3 class="dish-price">$${dish.price}</h3>
-                </div>
-                <div class="dish-info">
-                    <p>${dish.desc.replace(/`/g, "")}</p>
-                </div>
-                <div class="add-to-cart">
-                    <button class="add-to-cart-button">ADD TO CART</button>
-                </div>
-            </div>
-        `
-    });
+        data.forEach(dish => {
+                    //  creating a div element for each dish into main container
+                    let cardDiv = document.createElement("div");
+                    // appending each div to main container
+                    mainMenu.appendChild(cardDiv);
+                    // adding the class name for div
+                    cardDiv.className = "card flex-with-direction";
+                    // rendering the data into each div
+                    const dishImg = getImages().find(obj => obj[dish.title])[dish.title];
+                    cardDiv.innerHTML = `
+                        <div class="img">
+                            <img src="${dishImg}" alt="${dish.title}">
+                        </div>
+                        <div class="description">
+                            <div class="name-and-price flex-with-direction white-opacity">
+                                <h3 class="dish-name">${dish.title}</h3>
+                                <h3 class="dish-price">$${dish.price}</h3>
+                            </div>
+                            <div class="dish-info">
+                                <p>${dish.desc.replace(/`/g, "")}</p>
+                            </div>
+                            <div class="add-to-cart">
+                                <button id="${dish.title}" data-price="${dish.price}" class="add-to-cart-button">ADD TO CART</button>
+                            </div>
+                        </div>
+                    `
+        });
 }
 
 /*
@@ -94,4 +99,89 @@ function showCategoryMenu(category) {
             renderDataToMenu(categoryItems);
         })
 }
-list.addEventListener("click", (e) => showCategoryMenu(e.target.id))
+list.addEventListener("click", (e) => showCategoryMenu(e.target.id));
+
+/**
+ * Cart functionality
+ */
+
+// object to store added items to cart
+let itemsOnCart = [];
+
+const addItemsToCart = (targetItem) => {
+
+    targetItem.innerHTML = `ADDED`;
+
+    let itemToAdd = {};
+
+    let dishName = targetItem.id;
+    
+    let dishPrice = targetItem.getAttribute("data-price");
+    
+    if (itemsOnCart.length === 1) {
+
+        itemsOnCart.forEach(dish => {
+            if (dish.dishName === dishName) {
+                dish.dishQuantity++;
+                dish.dishPrice = dishPrice * dish.dishQuantity;
+            }
+        })
+
+    } else if (itemsOnCart.length > 1) {
+
+        itemsOnCart.forEach(dish => {
+            if (dish.dishName === dishName) {
+                dish.dishQuantity++;
+                dish.dishPrice = dishPrice * dish.dishQuantity;
+            }
+        })
+
+    } else {
+        
+        itemToAdd.dishName = dishName;
+        itemToAdd.dishQuantity = 1;
+        itemToAdd.dishPrice = Number(dishPrice);
+
+        itemsOnCart.push(itemToAdd);
+        
+    }
+
+}
+
+document.addEventListener("click", e => {
+    // adding eventListener to document can be challenging
+    // because anywhere you click it's going to trigger
+    // a click event, that's why verifying if the clicked element
+    // has "ADD TO CART" text in it
+    
+    if (e.target.innerText === "ADD TO CART" || e.target.innerText === "ADDED") addItemsToCart(e.target);
+});
+
+const displayCartItems = () => {
+
+    cartArea.style.display = "contents";
+    showCartButton.innerHTML = "CHECKOUT";
+
+    itemsOnCart.forEach(itemOnCart => {
+        
+        // dish name display in cart
+        let dishNameToDisplay = document.createElement("p");
+        dishNameInCart.appendChild(dishNameToDisplay);
+        dishNameToDisplay.innerHTML = `${itemOnCart.dishName}`;
+
+        // dish quantity display in cart
+        let dishQuantityToDisplay = document.createElement("p");
+        dishQuantityInCart.appendChild(dishQuantityToDisplay);
+        dishQuantityToDisplay.innerHTML = `${itemOnCart.dishQuantity}`;
+        
+        // dish price display in cart
+        let dishPriceToDisplay = document.createElement("p");
+        dishPriceInCart.appendChild(dishPriceToDisplay);
+        dishPriceToDisplay.innerHTML = `${itemOnCart.dishPrice}`;
+
+    })
+
+
+}
+
+showCartButton.addEventListener("click", displayCartItems);

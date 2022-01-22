@@ -20,7 +20,7 @@
                     <input type="text" class="search-input" placeholder="search for dish...">
                 </div>
             </div>
-            <hr>
+            
         </header>
         <!-- search section -->
         <section class="search">
@@ -40,10 +40,29 @@
 
         <!-- checkout cart -->
         <div class="cart-area">
-            <h1>Cart</h1>
-            <i class="fas fa-3x fa-shopping-cart"></i>
+            <div class="cart-header">
+                <h1>Cart</h1>
+                <i class="fas fa-3x fa-shopping-cart"></i>
+            </div>
+            <hr>
+            <div class="cart-items">
+                <div class="dish name-in-cart">
+                    <h2>Dish</h2>
+                </div>
+                <div class="dish quantity-in-cart">
+                    <h2>Quantity</h2>
+                </div>
+                <div class="dish price-in-cart">
+                    <h2>Price</h2>
+                </div>
+            </div>
         </div>
     </section>
+    <footer>
+        <div class="total-price"></div>
+        <button class="checkout-button">SHOW CART</button>
+    </footer>
 </body>
 <script type="module" src="main.js"></script>
+
 </html>
