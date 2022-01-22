@@ -50,13 +50,37 @@ const renderDataToMenu = (data) => {
         });
 }
 
+
+/*
+ * renderFilter() takes all categories from API.
+ * Checks for uniqueness and rendering all uniq categories as filter items.
+*/
+const renderFilter = (data) => {
+    const titles = [];
+    data.forEach(obj => {
+        const category = obj.category;
+        if(titles.indexOf(category) === -1) { //This means there is no filter with such title
+            //  creating a div element for each dish into main container
+            const menuLi = document.createElement("li");
+            menuLi.className = "search-item";
+            menuLi.id = category;
+            menuLi.innerText = category;
+            list.appendChild(menuLi);
+            titles.push(category);
+        }
+    });
+}
+
 /*
  * Here we use IIFE function on initial page load
 */
 (() => {
     fetch(API_URL)
         .then(resp => resp.json())
-        .then(data => renderDataToMenu(data));
+        .then(data => {
+            renderDataToMenu(data);
+            renderFilter(data);
+        });
     }
 )();
 
