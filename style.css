@@ -1,6 +1,6 @@
 :root {
     --main-color: #F1F5F9;
-    --border-color: salmon;
+    --border-color: purple;
     --description-color: grey;
     --button-hover: bisque;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -31,9 +31,9 @@ header {
 }
 
 hr {
-    width: 80px;
-    border-top: 2px solid var(--border-color);
-    margin-top: 10px;
+    width: 100%;
+    border-top: 2px dashed var(--border-color);
+    margin: 20px 0;
 }
 
 .search-area {
@@ -202,18 +202,64 @@ img {
 .quantity-of-items-between-buttons {
     font-size: 25px;
 }
- 
+
 .cart-area {
+    display: none;
+}
+
+.cart-header {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    justify-content: space-around;
 }
 
 .fa-shopping-cart {
     color: var(--border-color);
     margin: 20px;
+}
+
+.cart-items {
+    display: flex;
+    justify-content: space-between; 
+}
+
+.cart-items .dish {
+    margin: 0 15px;
+}
+
+.dish p {
+    margin: 10px 0;
+}
+
+.quantity-in-cart {
+    padding: 0 40px;
+}
+
+footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.total-price {  
+    justify-content: center;
+}
+
+.checkout-button {
+    width: 70%;
+    margin: 50px 0;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px;
+    border: solid 2px var(--border-color);
+    margin-bottom: 10px;
+}
+
+.checkout-button:hover {
+    background-color: var(--button-hover);
+    border-style: outset;
 }
 
 @media (min-width: 600px) {
