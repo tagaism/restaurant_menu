@@ -202,10 +202,22 @@ const displayCartItems = () => {
         let dishPriceToDisplay = document.createElement("p");
         dishPriceInCart.appendChild(dishPriceToDisplay);
         dishPriceToDisplay.innerHTML = `${itemOnCart.dishPrice}`;
-
     })
-
-
 }
 
 showCartButton.addEventListener("click", displayCartItems);
+
+/*
+ * control buttons activation
+*/
+function makeActive(selectedId) {
+    document.querySelectorAll(".search-item").forEach(el => {
+        if (selectedId === el.id) {
+            el.classList.add('activeButton');
+        } else {
+            el.classList.remove('activeButton');
+        }
+    })
+}
+
+list.addEventListener("click", (e) => makeActive(e.target.id))

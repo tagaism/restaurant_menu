@@ -262,6 +262,11 @@ footer {
     border-style: outset;
 }
 
+
+.activeButton {
+    background-color: coral;
+    color: white;
+}
 @media (min-width: 600px) {
     .main {
         max-width: 1000px;
