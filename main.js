@@ -59,8 +59,9 @@ const renderFilter = (data) => {
     const titles = [];
     data.forEach(obj => {
         const category = obj.category;
-        if(titles.indexOf(category) === -1) { //This means there is no filter with such title
-            //  creating a div element for each dish into main container
+        if(titles.indexOf(category) === -1) { 
+            // This means there is no filter with such title
+            // creating a div element for each dish into main container
             const menuLi = document.createElement("li");
             menuLi.className = "search-item";
             menuLi.id = category;
@@ -118,7 +119,8 @@ function showCategoryMenu(category) {
     fetch(API_URL)
         .then(resp => resp.json())
         .then(data => {
-            let categoryItems = category === "all" ? data : data.filter(item => item.category === category);
+            let categoryItems = category === "all" ? 
+            data : data.filter(item => item.category === category);
 
             renderDataToMenu(categoryItems);
         })
@@ -129,47 +131,40 @@ list.addEventListener("click", (e) => showCategoryMenu(e.target.id));
  * Cart functionality
  */
 
-// object to store added items to cart
+// array to store added items to cart
 let itemsOnCart = [];
 
 const addItemsToCart = (targetItem) => {
 
-    targetItem.innerHTML = `ADDED`;
+    if (targetItem.innerText !== "ADDED") targetItem.innerText = 'ADDED';
 
     let itemToAdd = {};
 
     let dishName = targetItem.id;
     
     let dishPrice = targetItem.getAttribute("data-price");
-    
-    if (itemsOnCart.length === 1) {
 
+    if (itemsOnCart.length > 0) {
         itemsOnCart.forEach(dish => {
+            
             if (dish.dishName === dishName) {
+                
                 dish.dishQuantity++;
                 dish.dishPrice = dishPrice * dish.dishQuantity;
+            } else {
+                itemToAdd.dishName = dishName;
+                itemToAdd.dishPrice = Number(dishPrice);
+                itemToAdd.dishQuantity = 1;
             }
+        
         })
-
-    } else if (itemsOnCart.length > 1) {
-
-        itemsOnCart.forEach(dish => {
-            if (dish.dishName === dishName) {
-                dish.dishQuantity++;
-                dish.dishPrice = dishPrice * dish.dishQuantity;
-            }
-        })
-
     } else {
-        
         itemToAdd.dishName = dishName;
-        itemToAdd.dishQuantity = 1;
         itemToAdd.dishPrice = Number(dishPrice);
-
-        itemsOnCart.push(itemToAdd);
-        
+        itemToAdd.dishQuantity = 1;
     }
 
+    itemsOnCart.push(itemToAdd);
 }
 
 document.addEventListener("click", e => {
@@ -181,27 +176,49 @@ document.addEventListener("click", e => {
     if (e.target.innerText === "ADD TO CART" || e.target.innerText === "ADDED") addItemsToCart(e.target);
 });
 
+const clearCartItems = (itemToClear) => {
+    itemToClear.innerHTML = "";
+}
+
 const displayCartItems = () => {
-
-    cartArea.style.display = "contents";
+    document.querySelector(".wrapper").style.display = "none";
+    cartArea.style.display = "block";
     showCartButton.innerHTML = "CHECKOUT";
+    // using this set collection to store unqiue names of the dishes
+    let finalCartDishToDisplaySet = new Set();
+    // looping over the itemsOnCart array and adding dishe names to set
+    for (let item of itemsOnCart) {
+        finalCartDishToDisplaySet.add(item.dishName);
+    }
+    // array to store dish names only with same order index they are in items on car array
+    let dishNameArray = [];
+    itemsOnCart.forEach(item => dishNameArray.push(item.dishName));
+    // final array to store the dish objects to display
+    let dishToDisplayFinalArray = [];
+    for (let i of finalCartDishToDisplaySet) {
+        let index = dishNameArray.indexOf(i);
+        if (itemsOnCart[index].dishName !== '' && itemsOnCart[index].dishName !== undefined) dishToDisplayFinalArray.push(itemsOnCart[index]);
+    }
 
-    itemsOnCart.forEach(itemOnCart => {
+    dishToDisplayFinalArray.forEach(itemOnCart => {
         
         // dish name display in cart
         let dishNameToDisplay = document.createElement("p");
+        clearCartItems(dishNameToDisplay);
         dishNameInCart.appendChild(dishNameToDisplay);
         dishNameToDisplay.innerHTML = `${itemOnCart.dishName}`;
 
         // dish quantity display in cart
         let dishQuantityToDisplay = document.createElement("p");
+        clearCartItems(dishQuantityToDisplay);
         dishQuantityInCart.appendChild(dishQuantityToDisplay);
         dishQuantityToDisplay.innerHTML = `${itemOnCart.dishQuantity}`;
         
         // dish price display in cart
         let dishPriceToDisplay = document.createElement("p");
+        clearCartItems(dishPriceToDisplay);
         dishPriceInCart.appendChild(dishPriceToDisplay);
-        dishPriceToDisplay.innerHTML = `${itemOnCart.dishPrice}`;
+        dishPriceToDisplay.innerHTML = `${itemOnCart.dishPrice.toFixed(2)}`;
     })
 }
 
